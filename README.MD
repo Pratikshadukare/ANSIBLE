@@ -75,3 +75,21 @@ It is **agentless**, meaning it doesn’t require any software or agent to be in
 2. You run an Ansible command or playbook:
    ```bash
    ansible-playbook site.yml -i inventory.ini
+
+
+
+🧰 Common Ansible Commands
+Purpose	Command
+Check Ansible version	ansible --version
+Ping all hosts	ansible all -i inventory.ini -m ping
+Run a command on all hosts	ansible all -i inventory.ini -a "uptime"
+Install a package	ansible web -i inventory.ini -m apt -a "name=nginx state=present" -b
+Copy file to remote	ansible all -i inventory.ini -m copy -a "src=file.txt dest=/tmp/"
+Reboot servers	ansible all -i inventory.ini -m reboot -b
+Run a playbook	ansible-playbook -i inventory.ini site.yml
+Playbook with sudo (become)	ansible-playbook -i inventory.ini site.yml --become
+Playbook with dry-run	ansible-playbook -i inventory.ini site.yml --check
+Playbook with tag	ansible-playbook -i inventory.ini site.yml --tags "web"
+List all hosts	ansible-inventory -i inventory.ini --list
+List specific group hosts	ansible web -i inventory.ini --list-hosts
+Check playbook syntax	ansible-playbook site.yml --syntax-check
